@@ -6,7 +6,7 @@ const passport = require('passport');
 const { PORT, HTTP_STATUS_CODES, MONGO_URL, TEST_MONGO_URL } = require('./config');
 const { authRouter } = require('./auth/auth.router');
 const { userRouter } = require('./user/user.router');
-const { charSheetRouter } = require('./char-sheet/char-sheet.router');
+// const { charSheetRouter } = require('./characterSheet/charSheet.router');
 const { localStrategy, jwtStrategy } = require('./auth/auth.strategy');
 
 let server;
@@ -22,7 +22,7 @@ app.use(express.static('./public')); // Intercepts all HTTP requests that match 
 // ROUTER SETUP
 app.use('/api/auth', authRouter); // Redirects all calls to /api/user to userRouter.
 app.use('/api/user', userRouter); // Redirects all calls to /api/user to userRouter.
-app.use('/api/charSheet', charSheetRouter); //Redirects all calsl to /api/user to charSheetRouter.
+// app.use('/api/charSheet', charSheetRouter); //Redirects all calls to /api/user to charSheetRouter.
 
 // In case we make a HTTP request that is unhandled by our Express server, we return a 404 status code and the message "Not Found."
 app.use('*', function (req, res) {
