@@ -22,7 +22,7 @@ app.use(express.static('./public')); // Intercepts all HTTP requests that match 
 // ROUTER SETUP
 app.use('/api/auth', authRouter); // Redirects all calls to /api/user to userRouter.
 app.use('/api/user', userRouter); // Redirects all calls to /api/user to userRouter.
-app.use('/api/charSheet', charSheetRouter); //Redirects all calls to /api/user to charSheetRouter.
+app.use('/api/char', charSheetRouter); //Redirects all calls to /api/user to charSheetRouter.
 
 // In case we make a HTTP request that is unhandled by our Express server, we return a 404 status code and the message "Not Found."
 app.use('*', function (req, res) {

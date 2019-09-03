@@ -7,15 +7,16 @@ const { jwtPassportMiddleware } = require('../auth/auth.strategy');
 const { CharSheet, charSheetJoiSchema} = require('./charSheet.model');
 
 // CREATE NEW CHARACTER SHEET
-charSheetRouter.post('/', jwtPassportMiddleware, (req,res)=>{
+charSheetRouter.post('/', jwtPassportMiddleware, (req,res) => {
     const newCharSheet = {
         user: req.user.id,
         charName: req.body.charName,
+        class: req.body.class,
         level: req.body.level,
-        alignment: req.body.alignment,
+        race: req.body.race,
         background: req.body.background,
+        alignment: req.body.alignment,
         exp: req.body.exp,
-        proficiencyBonus: req.body.proficiencyBonus,
         inspiration: req.body.inspiration,
         strength: req.body.strength,
         dexterity: req.body.dexterity,
@@ -79,11 +80,12 @@ charSheetRouter.get('/:charSheetId', (req, res) => {
 charSheetRouter.put('/:charSheetId', jwtPassportMiddleware, (req, res) => {
     const charSheetUpdate = {
         charName: req.body.charName,
+        class: req.body.class,
         level: req.body.level,
-        alignment: req.body.alignment,
+        race: req.body.race,
         background: req.body.background,
+        alignment: req.body.alignment,
         exp: req.body.exp,
-        proficiencyBonus: req.body.proficiencyBonus,
         inspiration: req.body.inspiration,
         strength: req.body.strength,
         dexterity: req.body.dexterity,
@@ -93,7 +95,7 @@ charSheetRouter.put('/:charSheetId', jwtPassportMiddleware, (req, res) => {
         charisma: req.body.charisma
     };
 
-    const validation = Joi.validate(newCharSheet, charSheetJoiSchema);
+    const validation = Joi.validate(charSheetUpdate, charSheetJoiSchema);
     if(validation.error) {
         return res.status(HTTP_STATUS_CODES.BAD_REQUEST).json({error: validation.error});
     }
@@ -117,4 +119,4 @@ charSheetRouter.delete('/:charSheetId', jwtPassportMiddleware, (req, res )=>{
     });
 });
 
-module.exports = { charSheetRouter}
+module.exports = { charSheetRouter }
