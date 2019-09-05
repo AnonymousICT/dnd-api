@@ -10,12 +10,11 @@ const charSheetSchema = new mongoose.Schema({
     class: {type: String, required: true},
     level: {type: Number, required: true}, 
     race: {type: String, required: true},
-    background: {type: String, required: true},
+    background: {type: String},
     alignment: {type: String, required: true},
     
     // stuff that can change
-    exp: {type: Number, required: true}, 
-    proficiencyBonus: {type: Number, required: true}, 
+    exp: {type: Number, required: true},  
     inspiration: {type: Number, required: false},
     strength: {type: Number, required: true}, 
     dexterity: {type: Number, required: true}, 
